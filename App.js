@@ -5,7 +5,6 @@ import { RootSiblingParent } from 'react-native-root-siblings'
 import { StyleSheet } from "react-native"
 
 import HomeScreen from './screens/HomeScreen'
-import ProfileScreen from './screens/ProfileScreen'
 
 const Drawer = createDrawerNavigator()
 
@@ -15,7 +14,6 @@ export default function App() {
       <NavigationContainer>
         <Drawer.Navigator initialRouteName='Home'>
           <Drawer.Screen name='Home' component={HomeScreen} />
-          <Drawer.Screen name='Profile' component={ProfileScreen} />
         </Drawer.Navigator>
       </NavigationContainer>
     </RootSiblingParent>
