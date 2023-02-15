@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Pressable, Text, View, Modal } from "react-native"
+import { Text, View } from "react-native"
 
 import { StyleSheet } from "react-native"
 
