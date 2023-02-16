@@ -4,7 +4,8 @@ import * as credentials from '../credentials.json'
 const endPoints = {
     checkConnection: `https://api.spacetraders.io/game/status`,
     userProfile: `https://api.spacetraders.io/my/account?token=${credentials.token}`,
-    viewAvaliableLoans: `https://api.spacetraders.io/types/loans?token=${credentials.token}`
+    viewAvaliableLoans: `https://api.spacetraders.io/types/loans?token=${credentials.token}`,
+    viewShipList: `https://api.spacetraders.io/systems/OE/ship-listings?token=${credentials.token}&class=MK-I`
 }
 
 export const checkApiConnection = async () => {
@@ -31,6 +32,15 @@ export const getUserProfile = async () => {
 export const getAvaliableLoans = async () => {
 
     const response = await fetch(endPoints.viewAvaliableLoans)
+    const data = response.json()
+
+    return data
+
+}
+
+export const getListOfShips = async () => {
+
+    const response = await fetch(endPoints.viewShipList)
     const data = response.json()
 
     return data

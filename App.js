@@ -6,6 +6,7 @@ import { StyleSheet } from "react-native"
 
 import HomeScreen from './screens/HomeScreen'
 import LoansScreen from './screens/LoansScreen'
+import ShipsScreen from './screens/ShipsScreen'
 
 const Drawer = createDrawerNavigator()
 
@@ -16,6 +17,7 @@ export default function App() {
         <Drawer.Navigator initialRouteName='Home'>
           <Drawer.Screen name='Home' component={HomeScreen} />
           <Drawer.Screen name='Loan' component={LoansScreen} />
+          <Drawer.Screen name='Ships' component={ShipsScreen} />
         </Drawer.Navigator>
       </NavigationContainer>
     </RootSiblingParent>
