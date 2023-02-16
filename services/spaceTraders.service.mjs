@@ -5,7 +5,17 @@ const endPoints = {
     checkConnection: `https://api.spacetraders.io/game/status`,
     userProfile: `https://api.spacetraders.io/my/account?token=${credentials.token}`,
     viewAvaliableLoans: `https://api.spacetraders.io/types/loans?token=${credentials.token}`,
+    takeOutALoan: `https://api.spacetraders.io/my/loans?token=${credentials.token}&type=${getTypeOfLoan}`,
     viewShipList: `https://api.spacetraders.io/systems/OE/ship-listings?token=${credentials.token}&class=MK-I`
+}
+
+const getTypeOfLoan = async () => {
+
+    const response = await fetch(endPoints.viewAvaliableLoans)
+    const data = response.json()
+
+    return data.loans.type
+
 }
 
 export const checkApiConnection = async () => {
@@ -33,6 +43,15 @@ export const getAvaliableLoans = async () => {
 
     const response = await fetch(endPoints.viewAvaliableLoans)
     const data = response.json()
+
+    return data
+
+}
+
+export const getLoan = async () => {
+
+    const response = await fetch(endPoints.takeOutALoan)
+    const data = await response.json()
 
     return data
 
