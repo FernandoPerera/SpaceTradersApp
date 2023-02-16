@@ -1,5 +1,7 @@
 import { View, Text, StyleSheet, Image } from "react-native"
 
+import { pallette } from "../themes/theme.js"
+
 const Loan = ({ loanAmount, loanRate, loanTermInDays, loanType }) => {
   return (
     <View style={styles.loanContainer}>
@@ -36,11 +38,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginVertical: '4%',
     paddingVertical: '4%',
-    borderWidth: 6,
+    borderBottomWidth: 4,
     borderRadius: 10,
-    borderStyle: 'dotted',
-    backgroundColor: '#071C41',
-    borderColor: 'blackcl'
+    borderColor: pallette.secundary_color
   },
   dataContainer: {
     justifyContent: 'center',
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   dataStyle: {
     marginVertical: '15%',
-    color: 'white'
+    color: pallette.secundary_color_text
   }
 })
 

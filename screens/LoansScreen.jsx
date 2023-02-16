@@ -6,6 +6,8 @@ import Loan from '../components/Loan'
 
 import { getAvaliableLoans, getLoan } from '../services/spaceTraders.service.mjs'
 
+import { pallette } from "../themes/theme.js"
+
 const LoansScreen = () => {
 
   const [avaliableLoansApi, setAvaliableLoansApi] = useState([])
@@ -40,7 +42,9 @@ const LoansScreen = () => {
 
       <View style={{ flex: 1, justifyContent: 'center', marginVertical: '7%' }}>
         <View style={styles.loansHeader}>
-          <Text style={{ fontSize: 19, fontStyle: 'italic', color: 'white' }}>Loans pending payment</Text>
+          <Text style={{ fontSize: 19, fontWeight: 'bold', color: pallette.primary_color_text }}>
+            Loans pending payment
+          </Text>
         </View>
       </View>
 
@@ -74,7 +78,7 @@ const LoansScreen = () => {
 
         <Pressable style={styles.loanButton} onPress={() => fetchGetLoan()}>
 
-          <Text style={{ fontSize: 16, color: 'white' }}>Ask for a loan</Text>
+          <Text style={{ fontSize: 16, color: pallette.secundary_color_text }}>Ask for a loan</Text>
 
         </Pressable>
 
@@ -86,7 +90,7 @@ const LoansScreen = () => {
           <View style={styles.modalContainer}>
 
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={{ color: 'white', fontSize: 16 }}>Repayment amount : {loanApi.repaymentAmount}</Text>
+              <Text style={{ color: pallette.secundary_color_text, fontSize: 16 }}>Repayment amount : {loanApi.repaymentAmount}</Text>
             </View>
 
           </View>
@@ -102,15 +106,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: '100%',
-    backgroundColor: '#071C41'
+    backgroundColor: pallette.primary_color
   },
   loansHeader: {
     padding: '6%',
     backgroundColor: 'white',
     borderRadius: 10,
     borderWidth: 3,
-    backgroundColor: '#1E0A49',
-    borderColor: '#7285A6'
+    backgroundColor: pallette.primary_color,
+    borderColor: pallette.secundary_color
   },
   loansListContainer: {
     flex: 5.5,
@@ -119,8 +123,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
     borderWidth: 3,
-    backgroundColor: '#1E0A49',
-    borderColor: '#7285A6',
+    borderColor: pallette.secundary_color
   },
   actionContainer: {
     flex: 1.5,
@@ -134,9 +137,7 @@ const styles = StyleSheet.create({
     padding: '8%',
     borderRadius: 15,
     borderWidth: 4,
-    borderStyle: 'dashed',
-    borderColor: '#7285A6',
-    backgroundColor: '#1E0A49'
+    borderColor: pallette.secundary_color
   },
   modalContainer: {
     justifyContent: 'space-evenly',
@@ -146,8 +147,8 @@ const styles = StyleSheet.create({
     marginHorizontal: '20%',
     borderRadius: 12,
     borderWidth: 3,
-    borderColor: 'black',
-    backgroundColor: '#063558'
+    borderColor: pallette.primary_color,
+    backgroundColor: pallette.secundary_color
   }
 
 })

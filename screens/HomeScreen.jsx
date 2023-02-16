@@ -5,6 +5,8 @@ import { StyleSheet } from "react-native"
 
 import { checkApiConnection, getUserProfile } from "../services/spaceTraders.service.mjs"
 
+import { pallette } from "../themes/theme.js"
+
 const HomeScreen = () => {
 
   const [userProfile, setUserProfile] = useState({})
@@ -32,13 +34,13 @@ const HomeScreen = () => {
       <View style={styles.connectionContainer}>
         <View style={{ marginVertical: '7%' }}>
 
-          <Text style={{ flex: 1, color: 'white', fontSize: 16 }}>API connection check</Text>
+          <Text style={{ flex: 1, color: pallette.primary_color_text, fontSize: 16 }}>API connection check</Text>
           {
             connection == true
 
               ? <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <View style={styles.goodConnection}></View>
-                <Text style={{ color: '#006308', marginHorizontal: '3%', fontSize: 16 }}>Successful API connection</Text>
+                <Text style={{ color: pallette.primary_color_text, marginHorizontal: '3%', fontSize: 16 }}>Successful API connection</Text>
               </View>
 
               : <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
@@ -60,7 +62,7 @@ const HomeScreen = () => {
             <Image source={require('../assets/rocket.png')}/>
           </View>
 
-          <View style={{ width: '60%', borderWidth: 0.8, borderColor: '#DDDADA', marginTop: '5%' }}></View>
+          <View style={{ width: 200, borderWidth: 1, borderColor: pallette.secundary_color, marginTop: '5%' }}></View>
 
           <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
 
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
 
   homeContainer: {
     flex: 1,
-    backgroundColor: '#071C41',
+    backgroundColor: pallette.primary_color,
     alignItems: 'center'
   },
   connectionContainer: {
@@ -104,7 +106,7 @@ const styles = StyleSheet.create({
     width: '80%',
     borderRadius: 10,
     borderWidth: 3,
-    borderColor: '#7285A6',
+    borderColor: pallette.secundary_color,
 
   },
   notConnection: {
@@ -112,7 +114,7 @@ const styles = StyleSheet.create({
     height: '100%',
     borderRadius: 60,
     backgroundColor: '#A40101',
-    borderColor: 'black',
+    borderColor: pallette.secundary_color,
     borderWidth: 3
   },
   goodConnection: {
@@ -120,8 +122,8 @@ const styles = StyleSheet.create({
     height: '100%',
     borderRadius: 60,
     backgroundColor: '#006308',
-    borderColor: 'black',
-    borderWidth: 3
+    borderColor: pallette.secundary_color,
+    borderWidth: 2.5
   },
   containerActions: {
     flex: 4,
@@ -133,25 +135,12 @@ const styles = StyleSheet.create({
     flex: 4,
     alignItems: 'center',
     height: '100%',
-    backgroundColor: '#071C41'
-  },
-  userHeader: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#2B80C1',
-    borderRadius: 10,
-    borderColor: '#DDDADA',
-    borderWidth: 3,
-    width: '55%',
-    height: '15%',
-    marginTop: '10%'
   },
   userDataContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#5382ED',
     borderRadius: 10,
-    borderColor: '#DDDADA',
+    borderColor: pallette.secundary_color,
     borderWidth: 3,
     width: '90%',
     marginTop: '10%'
@@ -159,15 +148,13 @@ const styles = StyleSheet.create({
   profileCircle: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: '39%',
+    width: '40%',
     height: '30%',
-    borderRadius: 120,
-    backgroundColor: '#fff',
-    borderColor: 'black',
-    borderWidth: 3,
+    borderRadius: 100,
+    backgroundColor: pallette.secundary_color
   },
   shadowIconIOS: {
-    shadowColor: "#000",
+    shadowColor: pallette.primary_color,
     shadowOffset: {
       width: 0,
       height: 8,
@@ -184,7 +171,7 @@ const styles = StyleSheet.create({
   },
   dataText: {
     marginVertical: '10%',
-    color: 'white',
+    color: pallette.primary_color_text,
     fontSize: 16
   }
 })

@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, Image } from "react-native"
+import { pallette } from "../themes/theme"
 
 const Ship = ({ ShipType, ShipSpeed, ShipWeapons, ShipMaxCargo }) => {
 
@@ -32,15 +33,15 @@ const Ship = ({ ShipType, ShipSpeed, ShipWeapons, ShipMaxCargo }) => {
 
                 <View style={styles.shipInfoContainer}>
                     <View style={{marginRight: '5%'}}>
-                        <Text>Speed</Text>
-                        <Text>Weapons</Text>
-                        <Text>Max Cargo</Text>
+                        <Text style={styles.modelData}>Speed</Text>
+                        <Text style={styles.modelData}>Weapons</Text>
+                        <Text style={styles.modelData}>Max Cargo</Text>
                     </View>
 
                     <View style={{marginLeft: '5%'}}>
-                        <Text>{ShipSpeed}</Text>
-                        <Text>{ShipWeapons}</Text>
-                        <Text>{ShipMaxCargo}</Text>
+                        <Text style={styles.modelData}>{ShipSpeed}</Text>
+                        <Text style={styles.modelData}>{ShipWeapons}</Text>
+                        <Text style={styles.modelData}>{ShipMaxCargo}</Text>
                     </View>
                 </View>
 
@@ -53,7 +54,7 @@ const Ship = ({ ShipType, ShipSpeed, ShipWeapons, ShipMaxCargo }) => {
 const styles = StyleSheet.create({
     ShipContainer: {
         flex: 1,
-        backgroundColor: '#7285A6',
+        backgroundColor: pallette.secundary_color,
         borderRadius: 10,
         marginVertical: '2%'
     },
@@ -65,13 +66,16 @@ const styles = StyleSheet.create({
     shipModel: {
         textAlign: 'center',
         fontSize: 20,
-        borderBottomWidth: 2.5,
+        borderBottomWidth: 3,
         borderBottomLeftRadius: 5,
         borderBottomRightRadius: 5,
         marginTop: '-5%',
         marginBottom: '2.5%',
         width: '35%',
-        padding: '2%'
+        padding: '2%',
+        fontWeight: 'bold',
+        borderColor: pallette.primary_color,
+        color: pallette.primary_color_text
     },  
     shipInfoContainer: {
         marginVertical: '5%',
@@ -81,6 +85,9 @@ const styles = StyleSheet.create({
         height: '60%',
         width: '30%'
     },
+    modelData : {
+        color: pallette.secundary_color_text
+    }
 })
 
 export default Ship

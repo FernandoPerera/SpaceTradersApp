@@ -6,6 +6,7 @@ import { StyleSheet } from "react-native"
 import { getListOfShips } from "../services/spaceTraders.service.mjs"
 
 import Ship from "../components/Ship.jsx"
+import { pallette } from "../themes/theme.js"
 
 const ShipsScreen = () => {
 
@@ -37,7 +38,7 @@ const ShipsScreen = () => {
                     ships.length == 0
                         ?
                         <View style={styles.emptyList}>
-                            <Text style={{ color: 'white' }}>Ships Not Founded</Text>
+                            <Text style={{ color: pallette.secundary_color_text }}>Ships Not Founded</Text>
                         </View>
                         :
                         <FlatList style={{ width: '95%' }}
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     shipsContainer: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#071C41'
+        backgroundColor: pallette.primary_color
     },
     listOfShipsContainer: {
         flex: 4,
@@ -83,7 +84,8 @@ const styles = StyleSheet.create({
     },
     headerTitle: {
         textAlign: 'center',
-        color: 'white',
+        fontWeight: 'bold',
+        color: pallette.primary_color_text,
         fontSize: 20,
         letterSpacing: 7,
         borderTopWidth: 4,
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         padding: '-10%',
         marginTop: '5%',
-        borderColor: '#7285A6'
+        borderColor: pallette.secundary_color
 
     }
 
