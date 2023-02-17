@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { StyleSheet } from 'react-native'
+import { ImageBackground, StyleSheet } from 'react-native'
 
 import { Text, View, FlatList, Pressable, Modal } from "react-native"
 import Loan from '../components/Loan'
@@ -38,7 +38,8 @@ const LoansScreen = () => {
   }
 
   return (
-    <View style={styles.avaliableLoansContainer}>
+
+    <ImageBackground style={styles.avaliableLoansContainer} source={(require('../assets/background-wallpapers/sky.png'))}>
 
       <View style={{ flex: 1, justifyContent: 'center', marginVertical: '7%' }}>
         <View style={styles.loansHeader}>
@@ -57,7 +58,7 @@ const LoansScreen = () => {
               <Text style={{ color: 'white' }}>No loans to pay</Text>
             </View>
             :
-            <FlatList style={{ width: '85%' }}
+            <FlatList style={{ width: '90%' }}
               data={avaliableLoansApi}
               renderItem={(renderItem) => {
                 const { amount, rate, termInDays, type } = renderItem.item
@@ -78,7 +79,13 @@ const LoansScreen = () => {
 
         <Pressable style={styles.loanButton} onPress={() => fetchGetLoan()}>
 
-          <Text style={{ fontSize: 16, color: pallette.secundary_color_text }}>Ask for a loan</Text>
+          <Text style={{
+            color: pallette.primary_color_text,
+            fontWeight: 'bold',
+            fontSize: 17
+          }}>
+            Ask for a loan
+          </Text>
 
         </Pressable>
 
@@ -90,13 +97,19 @@ const LoansScreen = () => {
           <View style={styles.modalContainer}>
 
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={{ color: pallette.secundary_color_text, fontSize: 16 }}>Repayment amount : {loanApi.repaymentAmount}</Text>
+              <Text style={{
+                color: pallette.primary_color_text,
+                fontWeight: 'bold',
+                fontSize: 17
+              }}>
+                Repayment amount : {loanApi.repaymentAmount}
+              </Text>
             </View>
 
           </View>
         </Modal>
       </View>
-    </View>
+    </ImageBackground>
   )
 }
 
@@ -110,34 +123,30 @@ const styles = StyleSheet.create({
   },
   loansHeader: {
     padding: '6%',
-    backgroundColor: 'white',
-    borderRadius: 10,
-    borderWidth: 3,
-    backgroundColor: pallette.primary_color,
+    borderRadius: 8,
+    borderWidth: 4,
     borderColor: pallette.secundary_color
   },
   loansListContainer: {
-    flex: 5.5,
-    width: '85%',
+    flex: 5,
+    width: '87.5%',
     alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 10,
-    borderWidth: 3,
-    borderColor: pallette.secundary_color
+    justifyContent: 'center'
   },
   actionContainer: {
-    flex: 1.5,
+    flex: 2.5,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
   },
   loanButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '8%',
-    borderRadius: 15,
-    borderWidth: 4,
-    borderColor: pallette.secundary_color
+    backgroundColor: pallette.primary_color,
+    padding: '4.5%',
+    paddingHorizontal: '6.5%',
+    borderRadius: 7,
+    borderTopWidth: 4,
+    borderBottomWidth: 4,
+    borderColor: pallette.primary_color_text
   },
   modalContainer: {
     justifyContent: 'space-evenly',
@@ -146,9 +155,11 @@ const styles = StyleSheet.create({
     marginVertical: '80%',
     marginHorizontal: '20%',
     borderRadius: 12,
-    borderWidth: 3,
-    borderColor: pallette.primary_color,
-    backgroundColor: pallette.secundary_color
+    borderRadius: 7,
+    borderTopWidth: 4,
+    borderBottomWidth: 4,
+    borderColor: pallette.primary_color_text,
+    backgroundColor: pallette.primary_color
   }
 
 })

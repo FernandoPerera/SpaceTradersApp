@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   loanContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     marginVertical: '4%',
     paddingVertical: '4%',
     borderBottomWidth: 4,
@@ -51,8 +51,10 @@ const styles = StyleSheet.create({
     marginVertical: '18%'
   },
   dataStyle: {
+    fontSize: 16,
+    fontWeight: 'bold',
     marginVertical: '15%',
-    color: pallette.secundary_color_text
+    color: pallette.primary_color_text
   }
 })
 
