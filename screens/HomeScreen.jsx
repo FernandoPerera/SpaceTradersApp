@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Text, View, Image } from "react-native"
+import { Text, View, Image, ImageBackground } from "react-native"
 
 import { StyleSheet } from "react-native"
 
@@ -9,8 +9,26 @@ import { pallette } from "../themes/theme.js"
 
 const HomeScreen = () => {
 
+  const [userIcon, setUserIcon] = useState()
   const [userProfile, setUserProfile] = useState({})
   const [connection, setConnection] = useState(false)
+
+  const imagesPath = [
+    <Image style={styles.imageStyle} source={require('../assets/userIcons/boba-fett.png')} resizeMode={'center'} />,
+    <Image style={styles.imageStyle} source={require('../assets/userIcons/baby-yoda.png')} resizeMode={'center'} />,
+    <Image style={[styles.imageStyle, styles.largeImage]} source={require('../assets/userIcons/goyo.png')} resizeMode={'center'} />,
+    <Image style={styles.imageStyle} source={require('../assets/userIcons/clon.png')} resizeMode={'center'} />,
+    <Image style={styles.imageStyle} source={require('../assets/userIcons/dark-vader.png')} resizeMode={'center'} />,
+    <Image style={styles.imageStyle} source={require('../assets/userIcons/darth-maul.png')} resizeMode={'center'} />,
+    <Image style={styles.imageStyle} source={require('../assets/userIcons/obi-wan.png')} resizeMode={'center'} />,
+    <Image style={[styles.imageStyle, styles.largeImage]} source={require('../assets/userIcons/r2d2.png')} resizeMode={'center'} />,
+    <Image style={styles.imageStyle} source={require('../assets/userIcons/yoda.png')} resizeMode={'center'} />
+  ]
+
+
+  const getRandomIcon = () => {
+    setUserIcon(imagesPath[Math.floor(Math.random() * imagesPath.length)])
+  }
 
   useEffect(() => {
 
@@ -25,22 +43,21 @@ const HomeScreen = () => {
 
     fetchCheckConnection()
     fetchUserData()
+    getRandomIcon()
 
   }, [])
 
   return (
-    <View style={styles.homeContainer}>
 
+    <ImageBackground style={styles.homeContainer} source={require('../assets/background-wallpapers/sky.png/')}>
       <View style={styles.connectionContainer}>
         <View style={{ marginVertical: '7%' }}>
-
-          <Text style={{ flex: 1, color: pallette.primary_color_text, fontSize: 16 }}>API connection check</Text>
           {
             connection == true
 
               ? <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <View style={styles.goodConnection}></View>
-                <Text style={{ color: pallette.primary_color_text, marginHorizontal: '3%', fontSize: 16 }}>Successful API connection</Text>
+                <Text style={{ color: pallette.primary_color_text, marginHorizontal: '3%', fontSize: 16 }}>Successfully API connection</Text>
               </View>
 
               : <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
@@ -56,13 +73,9 @@ const HomeScreen = () => {
 
         <View style={styles.userDataContainer}>
 
-          <View style={Platform.OS === 'ios'
-            ? [styles.profileCircle, styles.shadowIconIOS]
-            : [styles.profileCircle, styles.shadowIconAndroid]}>
-            <Image source={require('../assets/rocket.png')}/>
-          </View>
+          {userIcon}
 
-          <View style={{ width: 200, borderWidth: 1, borderColor: pallette.secundary_color, marginTop: '5%' }}></View>
+          <View style={styles.underLine}></View>
 
           <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
 
@@ -85,8 +98,7 @@ const HomeScreen = () => {
         </View>
 
       </View>
-
-    </View>
+    </ImageBackground>
   )
 }
 
@@ -95,19 +107,18 @@ const styles = StyleSheet.create({
   homeContainer: {
     flex: 1,
     backgroundColor: pallette.primary_color,
-    alignItems: 'center'
+    width: '100%',
+    height: '100%'
   },
   connectionContainer: {
-    flex: 1,
+    flex: 0.625,
+    alignSelf: 'center',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: '10%',
-    height: '15%',
+    marginTop: '7.5%',
     width: '80%',
     borderRadius: 10,
     borderWidth: 3,
-    borderColor: pallette.secundary_color,
-
+    borderColor: pallette.secundary_color
   },
   notConnection: {
     width: '17.5%',
@@ -125,45 +136,37 @@ const styles = StyleSheet.create({
     borderColor: pallette.secundary_color,
     borderWidth: 2.5
   },
-  containerActions: {
-    flex: 4,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   profileContainer: {
     flex: 4,
-    alignItems: 'center',
-    height: '100%',
+    alignItems: 'center'
+  },
+  underLine: {
+    width: 200,
+    borderBottomWidth: 2,
+    borderColor: pallette.secundary_color,
+    marginTop: '5%'
   },
   userDataContainer: {
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    borderRadius: 10,
-    borderColor: pallette.secundary_color,
+    borderRadius: 30,
     borderWidth: 3,
     width: '90%',
-    marginTop: '10%'
+    marginTop: '10%',
+    backgroundColor: pallette.primary_color
   },
-  profileCircle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '40%',
-    height: '30%',
-    borderRadius: 100,
-    backgroundColor: pallette.secundary_color
+  profileIcon: {
+    width: '80%',
+    height: '20%'
   },
-  shadowIconIOS: {
-    shadowColor: pallette.primary_color,
-    shadowOffset: {
-      width: 0,
-      height: 8,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 8.00,
+  imageStyle: {
+    width: '65%',
+    height: '55%',
+    marginVertical: '-7%'
   },
-  shadowIconAndroid: {
-    elevation: 15
+  largeImage: {
+    height: '45%',
+    marginVertical: '-0.12%'
   },
   data: {
     flex: 1,
