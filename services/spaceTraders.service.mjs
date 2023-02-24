@@ -9,7 +9,7 @@ const endPoints = {
     viewShipList: `https://api.spacetraders.io/systems/OE/ship-listings?token=${credentials.token}&class=MK-I`
 }
 
-const getTypeOfLoan = async () => {
+export const getTypeOfLoan = async () => {
 
     const response = await fetch(endPoints.viewAvaliableLoans)
     const data = response.json()

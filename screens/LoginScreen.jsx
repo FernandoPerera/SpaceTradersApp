@@ -1,12 +1,11 @@
 import { useState } from "react"
 import {
     ImageBackground, KeyboardAvoidingView, Platform,
-    StyleSheet, Text, TextInput, View, TouchableWithoutFeedback, Keyboard
+    StyleSheet, Text, TextInput, View, TouchableWithoutFeedback, Keyboard, Pressable
 } from "react-native"
-import Pressable from "react-native/Libraries/Components/Pressable/Pressable"
 import { pallette } from "../themes/theme"
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
 
     const [token, setToken] = useState()
 

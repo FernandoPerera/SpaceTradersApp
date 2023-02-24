@@ -1,8 +1,8 @@
 
-import { Image, StyleSheet, View, Text, ImageBackground, Pressable } from 'react-native'
+import { StyleSheet, View, Text, ImageBackground, Pressable } from 'react-native'
 import { pallette } from '../themes/theme'
 
-const StartingScreen = () => {
+const StartingScreen = ({ navigation }) => {
     return (
 
         <ImageBackground
@@ -21,11 +21,11 @@ const StartingScreen = () => {
 
                 <View style={styles.optionsContainer}>
 
-                    <Pressable style={styles.loginButtom}>
+                    <Pressable onPress={ () => navigation.navigate('Login')} style={styles.loginButtom}>
                         <Text style={styles.optionStyle}>Login</Text>
                     </Pressable>
 
-                    <Pressable style={styles.registerButtom}>
+                    <Pressable onPress={ () => navigation.navigate('Register')} style={styles.registerButtom}>
                         <Text style={styles.optionStyle}>Register</Text>
                     </Pressable>
 

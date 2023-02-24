@@ -3,12 +3,11 @@ import { ImageBackground, StyleSheet, TextInput, View, Text, Pressable } from 'r
 
 import { pallette } from '../themes/theme'
 
-const RegisterScreen = () => {
+const RegisterScreen = ({ navigation }) => {
 
     const [username, setUserName] = useState()
 
     const handleChange = (value) => {
-
         setUserName(value)
     }
 
@@ -37,7 +36,7 @@ const RegisterScreen = () => {
 
             </View>
 
-            <Pressable style={styles.buttonContainer}>
+            <Pressable  style={styles.buttonContainer}>
                 <Text style={styles.buttonText}>Confirm</Text>
             </Pressable>
 
