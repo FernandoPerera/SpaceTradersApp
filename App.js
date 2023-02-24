@@ -9,6 +9,8 @@ import LoansScreen from './screens/LoansScreen'
 import ShipsScreen from './screens/ShipsScreen'
 import StartingScreen from './screens/StartingScreen'
 import LoginScreen from './screens/LoginScreen'
+import RegisterScreen from './screens/RegisterScreen'
+
 
 const Drawer = createDrawerNavigator()
 
@@ -19,6 +21,7 @@ export default function App() {
         <Drawer.Navigator initialRouteName='StartingScreen'>
           <Drawer.Screen name='Entrance' component={StartingScreen} />
           <Drawer.Screen name='Login' component={LoginScreen} />
+          <Drawer.Screen name='Register' component={RegisterScreen} />
           <Drawer.Screen name='Home' component={HomeScreen} />
           <Drawer.Screen name='Loan' component={LoansScreen} />
           <Drawer.Screen name='Ships' component={ShipsScreen} />
