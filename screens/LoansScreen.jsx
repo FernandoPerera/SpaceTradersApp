@@ -2,23 +2,24 @@ import { useEffect, useState } from 'react'
 import { ImageBackground, StyleSheet } from 'react-native'
 
 import { Text, View, FlatList, Pressable, Modal } from "react-native"
+import Toast from 'react-native-root-toast'
 import Loan from '../components/Loan'
 
 import { getAvaliableLoans, getLoan } from '../services/spaceTraders.service.mjs'
 
 import { pallette } from "../themes/theme.js"
 
-const LoansScreen = () => {
+const LoansScreen = ({ token }) => {
 
   const [avaliableLoansApi, setAvaliableLoansApi] = useState([])
-  const [loanApi, setLoanApi] = useState({})
+  const [loanApi, setLoanApi] = useState()
 
   const [show, setShow] = useState(false)
 
   useEffect(() => {
 
     const fetchCheckAvaliableLoans = async () => {
-      const checkAvaliableLoans = await getAvaliableLoans()
+      const checkAvaliableLoans = await getAvaliableLoans(token)
       setAvaliableLoansApi(checkAvaliableLoans.loans)
     }
 
@@ -27,13 +28,22 @@ const LoansScreen = () => {
   }, [])
 
   const fetchGetLoan = async () => {
-    const loan = await getLoan()
-    setLoanApi(loan.loans[0])
-    setShow(true)
+    const response = await getLoan(token)
 
-    setTimeout(() => {
-      setShow(false)
-    }, 1500)
+    console.log(response)
+
+    if (response.hasOwnProperty('error')) {
+      Toast.show('Only one loan allowed at a time')
+    } else { 
+
+      setLoanApi(response.loan.repaymentAmount) 
+
+      setShow(true)
+
+      setTimeout(() => {
+        setShow(false)
+      }, 1500)
+    }
 
   }
 
@@ -44,7 +54,7 @@ const LoansScreen = () => {
       <View style={{ flex: 1, justifyContent: 'center', marginVertical: '7%' }}>
         <View style={styles.loansHeader}>
           <Text style={{ fontSize: 19, fontWeight: 'bold', color: pallette.primary_color_text }}>
-            Loans pending payment
+            Avaliable Loans
           </Text>
         </View>
       </View>
@@ -55,7 +65,7 @@ const LoansScreen = () => {
           avaliableLoansApi.length == 0
             ?
             <View style={styles.emptyList}>
-              <Text style={{ color: 'white' }}>No loans to pay</Text>
+              <Text style={{ color: 'white' }}>Dont have avaliable loans</Text>
             </View>
             :
             <FlatList style={{ width: '90%' }}
@@ -102,7 +112,7 @@ const LoansScreen = () => {
                 fontWeight: 'bold',
                 fontSize: 17
               }}>
-                Repayment amount : {loanApi.repaymentAmount}
+                Repayment amount : {loanApi}
               </Text>
             </View>
 

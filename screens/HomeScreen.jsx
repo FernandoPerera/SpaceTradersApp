@@ -7,7 +7,7 @@ import { checkApiConnection, getUserProfile } from "../services/spaceTraders.ser
 
 import { pallette } from "../themes/theme.js"
 
-const HomeScreen = () => {
+const HomeScreen = ({ token }) => {
 
   const [userIcon, setUserIcon] = useState()
   const [userProfile, setUserProfile] = useState({})
@@ -25,7 +25,6 @@ const HomeScreen = () => {
     <Image style={styles.imageStyle} source={require('../assets/userIcons/yoda.png')} resizeMode={'center'} />
   ]
 
-
   const getRandomIcon = () => {
     setUserIcon(imagesPath[Math.floor(Math.random() * imagesPath.length)])
   }
@@ -38,7 +37,8 @@ const HomeScreen = () => {
     }
 
     const fetchUserData = async () => {
-      setUserProfile(await getUserProfile())
+      setUserProfile(await getUserProfile(token))
+      console.log(userProfile)
     }
 
     fetchCheckConnection()

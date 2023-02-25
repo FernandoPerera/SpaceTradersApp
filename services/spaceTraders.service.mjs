@@ -1,20 +1,21 @@
 
-import * as credentials from '../credentials.json'
+//import * as credentials from '../credentials.json'
 
 const endPoints = {
-    checkConnection: `https://api.spacetraders.io/game/status`,
-    userProfile: `https://api.spacetraders.io/my/account?token=${credentials.token}`,
-    viewAvaliableLoans: `https://api.spacetraders.io/types/loans?token=${credentials.token}`,
-    takeOutALoan: `https://api.spacetraders.io/my/loans?token=${credentials.token}&type=${getTypeOfLoan}`,
-    viewShipList: `https://api.spacetraders.io/systems/OE/ship-listings?token=${credentials.token}&class=MK-I`
+    createUser: 'https://api.spacetraders.io/users/',
+    checkConnection: 'https://api.spacetraders.io/game/status',
+    userProfile: 'https://api.spacetraders.io/my/account?token=',
+    viewAvaliableLoans: 'https://api.spacetraders.io/types/loans?token=',
+    takeOutALoan: 'https://api.spacetraders.io/my/loans?token=',
+    viewShipList: 'https://api.spacetraders.io/systems/OE/ship-listings?token='
 }
 
-export const getTypeOfLoan = async () => {
+export const createUser = async (userName) => {
 
-    const response = await fetch(endPoints.viewAvaliableLoans)
+    const response = await fetch(`${endPoints.createUser}${userName}/claim`, { method: 'POST' })
     const data = response.json()
 
-    return data.loans.type
+    return data
 
 }
 
@@ -30,36 +31,39 @@ export const checkApiConnection = async () => {
 
 }
 
-export const getUserProfile = async () => {
+export const getUserProfile = async (token) => {
 
-    const response = await fetch(endPoints.userProfile)
+    const response = await fetch(`${endPoints.userProfile}${token}`)
     const data = await response.json()
 
     return data.user
 
 }
 
-export const getAvaliableLoans = async () => {
+export const getAvaliableLoans = async (token) => {
 
-    const response = await fetch(endPoints.viewAvaliableLoans)
+    const response = await fetch(`${endPoints.viewAvaliableLoans}${token}`)
     const data = response.json()
 
     return data
 
 }
 
-export const getLoan = async () => {
+export const getLoan = async (token) => {
 
-    const response = await fetch(endPoints.takeOutALoan)
+    
+    const typeOfLoan = await getAvaliableLoans(token)
+
+    const response = await fetch(`${endPoints.takeOutALoan}${token}&type=${typeOfLoan.loans[0].type}`, {method: 'POST'})
     const data = await response.json()
 
     return data
 
 }
 
-export const getListOfShips = async () => {
+export const getListOfShips = async (token) => {
 
-    const response = await fetch(endPoints.viewShipList)
+    const response = await fetch(`${endPoints.viewShipList}${token}`)
     const data = response.json()
 
     return data

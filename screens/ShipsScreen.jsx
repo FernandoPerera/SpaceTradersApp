@@ -8,14 +8,15 @@ import { getListOfShips } from "../services/spaceTraders.service.mjs"
 import Ship from "../components/Ship.jsx"
 import { pallette } from "../themes/theme.js"
 
-const ShipsScreen = () => {
+const ShipsScreen = ({ token }) => {
 
     const [ships, setShips] = useState([])
 
     useEffect(() => {
 
         const getShips = async () => {
-            const ships = await getListOfShips()
+            const ships = await getListOfShips(token)
+
             setShips(ships.shipListings)
         }
 
@@ -35,7 +36,7 @@ const ShipsScreen = () => {
             <View style={styles.listOfShipsContainer}>
 
                 {
-                    ships.length == 0
+                    ships.length === 0
                         ?
                         <View style={styles.emptyList}>
                             <Text style={{ color: pallette.secundary_color_text }}>Ships Not Founded</Text>

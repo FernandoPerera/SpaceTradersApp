@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
-import { ImageBackground, StyleSheet, TextInput, View, Text, Pressable } from 'react-native'
+import { ImageBackground, Image, StyleSheet, TextInput, View, Text, Pressable } from 'react-native'
 
 import { pallette } from '../themes/theme'
+import { createUser } from '../services/spaceTraders.service.mjs'
 
-const RegisterScreen = ({ navigation }) => {
+import Toast from 'react-native-root-toast'
+
+const RegisterScreen = ({ setToken }) => {
 
     const [username, setUserName] = useState()
 
@@ -11,15 +14,28 @@ const RegisterScreen = ({ navigation }) => {
         setUserName(value)
     }
 
+    const createNewUser = async () => {
+
+        const data = await createUser(username)
+    
+        data.token !== '' 
+            ? setToken(data.token)
+            : Toast.show('The username exists, introduce other', {
+                duration: Toast.durations.LONG
+            })
+            setUserName('')
+
+    }
+
     return (
         <ImageBackground
             source={require('../assets/background-wallpapers/sky.png')}
             style={styles.registerContainer}
         >
-            <ImageBackground
+            <Image
                 source={require('../assets/background-wallpapers/welcome.png')}
                 style={styles.headerImage}>
-            </ImageBackground>
+            </Image>
 
             <View style={styles.underLine}/>
 
@@ -36,7 +52,7 @@ const RegisterScreen = ({ navigation }) => {
 
             </View>
 
-            <Pressable  style={styles.buttonContainer}>
+            <Pressable onPress={createNewUser} style={styles.buttonContainer}>
                 <Text style={styles.buttonText}>Confirm</Text>
             </Pressable>
 
