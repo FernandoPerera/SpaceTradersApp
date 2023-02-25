@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react'
 import HomeScreen from './screens/HomeScreen'
 import ShipsScreen from './screens/ShipsScreen'
 import LoansScreen from './screens/LoansScreen'
+import Logout from './components/Logout'
 
 const Drawer = createDrawerNavigator()
 
@@ -54,6 +55,10 @@ export default function App() {
 
                 <Drawer.Screen name='Loan'>
                   { () => <LoansScreen token={token}/> }
+                </Drawer.Screen>
+
+                <Drawer.Screen name='Logout'>
+                  { () => <Logout setToken={setToken}/> }
                 </Drawer.Screen>
 
               </Drawer.Navigator>
