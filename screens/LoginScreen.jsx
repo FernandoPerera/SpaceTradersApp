@@ -1,17 +1,28 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
     ImageBackground, KeyboardAvoidingView, Platform,
     StyleSheet, Text, TextInput, View, TouchableWithoutFeedback, Keyboard, Pressable
 } from "react-native"
+import Toast from "react-native-root-toast"
+import { getUserProfile } from "../services/spaceTraders.service.mjs"
 import { pallette } from "../themes/theme"
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation, setToken }) => {
 
-    const [token, setToken] = useState()
+    const [checkToken, setCheckToken] = useState()
 
     const handleChangeText = (value) => {
+        setCheckToken(value)
+    }
 
-        setToken(value)
+    const checkUserProfile = async () => {
+
+        const response = await getUserProfile(checkToken)
+        
+        response === undefined
+            ? Toast.show('This user dont exist')
+            : setToken(checkToken)
+
     }
 
     return (
@@ -49,7 +60,7 @@ const LoginScreen = ({ navigation }) => {
                                 <TextInput
                                     style={styles.inputStyle}
                                     onChangeText={handleChangeText}
-                                    value={token}
+                                    value={checkToken}
                                 />
                                 <Text style={styles.dataStyle}>introduce your token</Text>
                             </View>
@@ -58,7 +69,7 @@ const LoginScreen = ({ navigation }) => {
 
                     </View>
 
-                    <Pressable onPress={ () => console.log(token)} style={styles.buttonContainer}>
+                    <Pressable onPress={checkUserProfile} style={styles.buttonContainer}>
                         <ImageBackground
                             source={require('../assets/background-wallpapers/sky.png')}
                             style={{
@@ -66,7 +77,7 @@ const LoginScreen = ({ navigation }) => {
                                 borderTopWidth: 5,
                                 borderTopRightRadius: 15,
                                 borderTopLeftRadius: 15
-                                }}>
+                            }}>
                             <Text style={styles.acceptButton}>Accept</Text>
                         </ImageBackground>
                     </Pressable>

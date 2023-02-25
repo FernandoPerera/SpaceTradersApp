@@ -30,8 +30,6 @@ const LoansScreen = ({ token }) => {
   const fetchGetLoan = async () => {
     const response = await getLoan(token)
 
-    console.log(response)
-
     if (response.hasOwnProperty('error')) {
       Toast.show('Only one loan allowed at a time')
     } else { 

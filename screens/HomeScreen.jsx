@@ -15,7 +15,6 @@ const HomeScreen = ({ token }) => {
 
   const imagesPath = [
     <Image style={styles.imageStyle} source={require('../assets/userIcons/boba-fett.png')} resizeMode={'center'} />,
-    <Image style={styles.imageStyle} source={require('../assets/userIcons/baby-yoda.png')} resizeMode={'center'} />,
     <Image style={[styles.imageStyle, styles.largeImage]} source={require('../assets/userIcons/goyo.png')} resizeMode={'center'} />,
     <Image style={styles.imageStyle} source={require('../assets/userIcons/clon.png')} resizeMode={'center'} />,
     <Image style={styles.imageStyle} source={require('../assets/userIcons/dark-vader.png')} resizeMode={'center'} />,

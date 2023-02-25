@@ -21,7 +21,9 @@ const MainStack = ({ token, setToken }) => {
         >
 
           <Stack.Screen name='Entrance' component={StartingScreen}/>
-          <Stack.Screen name='Login' component={LoginScreen}/>
+          <Stack.Screen name='Login'>
+            { () => <LoginScreen setToken={setToken}/> }
+          </Stack.Screen>
           
           <Stack.Screen name='Register'>
             { () => <RegisterScreen setToken={setToken}/> }
