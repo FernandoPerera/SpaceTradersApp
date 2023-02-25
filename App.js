@@ -1,10 +1,10 @@
 
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { RootSiblingParent } from 'react-native-root-siblings'
-
-// import { createDrawerNavigator } from '@react-navigation/drawer'
 import { NavigationContainer } from '@react-navigation/native'
-// import { RootSiblingParent } from 'react-native-root-siblings'
+
+import * as SecureStore from 'expo-secure-store'
+
 
 import MainStack from './navigation/MainStack'
 import { useEffect, useState } from 'react'
@@ -17,7 +17,22 @@ const Drawer = createDrawerNavigator()
 
 export default function App() {
 
+  const KEY_ON_STORAGE = 'token'
+
   const [token, setToken] = useState('')
+
+  useEffect(() => {
+
+    const getToken = async () => {
+      const savedToken = await SecureStore.getItemAsync(KEY_ON_STORAGE)
+      setToken(savedToken)
+
+      await SecureStore.setItemAsync(KEY_ON_STORAGE, savedToken)
+    }
+    
+    getToken()
+  
+  }, [token])
 
   return (
     <RootSiblingParent>
